@@ -3,10 +3,13 @@
 #include "player.hpp"
 #include <vector>
 
+template<typename T>
 class AvailablePlayers {
 
 };
 
+
+template<typename T>
 class Roster {
 
 };

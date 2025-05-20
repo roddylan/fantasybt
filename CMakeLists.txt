@@ -10,5 +10,7 @@ project(FantasyBT VERSION 0.1
 
 add_executable(fbt src/main.cpp)
 
-
+include_directories(include)
+include_directories(lib)
+include_directories(src)
 

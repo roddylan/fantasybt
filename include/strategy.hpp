@@ -19,7 +19,7 @@ public:
   // constructors
   Strategy() = delete; // empty
 
-  
+
 
   ~Strategy(); // destructor
 
@@ -32,6 +32,8 @@ public:
     win += _win;
     loss += !_win;
   }
+
+  void run(bool draft, size_t year, size_t week, size_t day); // run strategy
 
 private:
   std::function<void(BasePlayer<T_FOOTBALL>, int)>

@@ -14,14 +14,19 @@ const auto empty_draft_strategy = []<typename T>(const T &player,
 const auto empty_roster_strategy = []<typename T>(const T &player,
                                                   const int &pick) {};
 
+// template <typename T>
 class Strategy {
 public:
   // constructors
-  Strategy() = delete; // empty
-
-
+  Strategy(); // empty
 
   ~Strategy(); // destructor
+
+  virtual void draft_strategy(BasePlayer<T_FOOTBALL>, int) {};
+
+  virtual void roster_strategy() {};
+
+  virtual void trade_strategy(BasePlayer<T_FOOTBALL> p1, BasePlayer<T_FOOTBALL> p2) {};
 
   void send_trade();
   void receive_trade();
@@ -36,13 +41,6 @@ public:
   void run(bool draft, size_t year, size_t week, size_t day); // run strategy
 
 private:
-  std::function<void(BasePlayer<T_FOOTBALL>, int)>
-      draft_strategy; // void(player, draft pick)
-  std::function<BasePlayer<T_FOOTBALL>(BasePlayer<T_FOOTBALL>,
-                                       BasePlayer<T_FOOTBALL>)>
-      trade_strategy;
-  std::function<void(Roster<T_FOOTBALL>)> roster_strategy;
-
   Roster<T_FOOTBALL> roster;
 
   size_t win;

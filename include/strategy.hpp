@@ -24,11 +24,11 @@ public:
 
   virtual ~Strategy(); // destructor
 
-  virtual void draft_strategy(BasePlayer<T_FOOTBALL>, int) {};
+  virtual void draft_strategy(const BasePlayer<T_FOOTBALL> &, const int &) {};
 
   virtual void roster_strategy() {};
 
-  virtual void trade_strategy(BasePlayer<T_FOOTBALL> p1, BasePlayer<T_FOOTBALL> p2) {};
+  virtual void trade_strategy(const BasePlayer<T_FOOTBALL> &p1, const BasePlayer<T_FOOTBALL> &p2) {};
 
   void send_trade();
   void receive_trade();
@@ -40,7 +40,7 @@ public:
     loss += !_win;
   }
 
-  void run(bool draft, size_t year, size_t week, size_t day); // run strategy
+  void run(const bool &draft, const size_t &year, const size_t &week, const size_t &day); // run strategy
 
 private:
   Roster<T_FOOTBALL> roster;

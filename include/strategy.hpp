@@ -3,6 +3,7 @@
 #include "player.hpp"
 #include "roster.hpp"
 #include <functional>
+#include <unordered_map>
 
 // TODO: template
 typedef Position::Football T_FOOTBALL;
@@ -19,8 +20,9 @@ class Strategy {
 public:
   // constructors
   Strategy(); // empty
+  Strategy(const std::unordered_map<T_FOOTBALL, size_t> &counts, const int &roster_sz);
 
-  ~Strategy(); // destructor
+  virtual ~Strategy(); // destructor
 
   virtual void draft_strategy(BasePlayer<T_FOOTBALL>, int) {};
 

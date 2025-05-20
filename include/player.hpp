@@ -5,24 +5,26 @@
 #include <vector> 
 
 namespace Position {
-enum Football {
-  QB,
-  RB,
-  WR,
-  TE,
-  STD,
-  K,
-};
+  enum class Football {
+    QB,
+    RB,
+    WR,
+    TE,
+    STD,
+    K,
+    UTIL,
+  };
 
-enum Hockey {
-  C,
-  LW,
-  RW,
-  W,
-  F,
-  D,
-  G,
-};
+  enum class Hockey {
+    C,
+    LW,
+    RW,
+    W,
+    F,
+    D,
+    G,
+    UTIL,
+  };
 } // namespace Position
 
 enum PlayerStatus {
@@ -31,6 +33,7 @@ enum PlayerStatus {
   IR,   // injured
 };
 
+// TODO: type constraint
 template <typename T> class BasePlayer {
 public:
   BasePlayer(const std::string &_name, const float &_rank,

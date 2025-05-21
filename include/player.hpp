@@ -1,8 +1,10 @@
 #ifndef PLAYER_HPP_
 #define PLAYER_HPP_
 #include <cstddef>
+#include <ostream>
 #include <string>
 #include <vector> 
+#include <format>
 
 namespace Position {
   enum class Football {
@@ -28,6 +30,7 @@ namespace Position {
 } // namespace Position
 
 enum class PlayerStatus {
+  H,    // healthy
   Q,    // questionable
   DTDO, // dtd or out
   IR,   // injured
@@ -36,11 +39,29 @@ enum class PlayerStatus {
 // TODO: type constraint
 template <typename T> class BasePlayer {
 public:
+  // TODO: add projected rank
   BasePlayer(const std::string &_name, const float &_rank,
              const std::vector<T> &_pos, const PlayerStatus &_status)
       : name{_name}, rank{_rank}, pos{_pos}, status{_status} {}
 
   ~BasePlayer();
+
+  std::vector<T> get_pos() const { return pos; }
+
+  PlayerStatus get_status() const { return status; }
+  void set_status(const PlayerStatus &_status) { status = _status; }
+  
+  std::string to_string() const {
+    // return std::format("{} | {} | Cur Rank: {} | Status: {}", );
+    return "";
+  }
+
+  operator std::string() const {
+    return this->to_string();
+  }
+
+  friend std::ostream &operator<<(std::ostream &os, const BasePlayer<T> &player);
+
 
 private:
   std::string name;
@@ -48,6 +69,8 @@ private:
   std::vector<T> pos;
   PlayerStatus status;
 };
+
+
 
 template<typename T>
 struct TradePackage {

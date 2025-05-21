@@ -19,8 +19,8 @@ const auto empty_roster_strategy = []<typename T>(const T &player,
 class Strategy {
 public:
   // constructors
-  Strategy(); // empty
-  Strategy(const std::unordered_map<T_FOOTBALL, size_t> &counts, const int &roster_sz);
+  Strategy() = delete; // empty
+  Strategy(const std::unordered_map<T_FOOTBALL, size_t> &counts, const int &roster_sz) : roster{counts, roster_sz} {};
 
   virtual ~Strategy(); // destructor
 

@@ -12,5 +12,15 @@ add_executable(fbt src/main.cpp)
 
 include_directories(include)
 
+CPMAddPackage(
+  NAME magic_enum
+  GITHUB_REPOSITORY Neargye/magic_enum
+  GIT_TAG v0.9.7
+)
+
+link_libraries(magic_enum)
+
+
+
 
 

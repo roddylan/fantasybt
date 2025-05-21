@@ -6,12 +6,12 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 project(FantasyBT VERSION 0.1
                   DESCRIPTION "Fantasy sports roster strategy backtester"
                   LANGUAGES CXX)
-
-
+# 
+include(cmake/CPM.cmake)
+                  
 add_executable(fbt src/main.cpp)
 
 include_directories(include)
-
 CPMAddPackage(
   NAME magic_enum
   GITHUB_REPOSITORY Neargye/magic_enum

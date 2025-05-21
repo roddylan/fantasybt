@@ -27,7 +27,7 @@ namespace Position {
   };
 } // namespace Position
 
-enum PlayerStatus {
+enum class PlayerStatus {
   Q,    // questionable
   DTDO, // dtd or out
   IR,   // injured

@@ -10,18 +10,30 @@ project(FantasyBT VERSION 0.1
 include(cmake/CPM.cmake)
                   
 add_executable(fbt src/main.cpp)
-
 file(GLOB_RECURSE TEST_SRC test/*.cpp)
-add_executable(test TEST_SRC)
+add_executable(test ${TEST_SRC})
 
-include_directories(include)
+
 CPMAddPackage(
   NAME magic_enum
   GITHUB_REPOSITORY Neargye/magic_enum
   GIT_TAG v0.9.7
 )
 
-link_libraries(magic_enum)
+find_package(fmt CONFIG REQUIRED)
+
+
+target_include_directories(fbt PRIVATE include)
+target_include_directories(test PRIVATE include)
+
+target_link_libraries(fbt PRIVATE fmt::fmt magic_enum)
+target_link_libraries(test PRIVATE fmt::fmt magic_enum)
+
+# include_directories(include)
+
+
+# link_libraries(fmt::fmt)
+# link_libraries(magic_enum)
 
 
 

@@ -8,26 +8,26 @@
 #include <vector>
 
 namespace Position {
-enum class Football {
-  QB,
-  RB,
-  WR,
-  TE,
-  STD,
-  K,
-  UTIL,
-};
+  enum class Football {
+    QB,
+    RB,
+    WR,
+    TE,
+    STD,
+    K,
+    UTIL,
+  };
 
-enum class Hockey {
-  C,
-  LW,
-  RW,
-  W,
-  F,
-  D,
-  G,
-  UTIL,
-};
+  enum class Hockey {
+    C,
+    LW,
+    RW,
+    W,
+    F,
+    D,
+    G,
+    UTIL,
+  };
 } // namespace Position
 
 enum class PlayerStatus {

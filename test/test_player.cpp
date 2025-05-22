@@ -12,6 +12,8 @@ int main() {
   };
   
 
-  
+  std::cout << temp.to_string();
+
+
   return 0;
 }

@@ -11,6 +11,9 @@ include(cmake/CPM.cmake)
                   
 add_executable(fbt src/main.cpp)
 
+file(GLOB_RECURSE TEST_SRC test/*.cpp)
+add_executable(test TEST_SRC)
+
 include_directories(include)
 CPMAddPackage(
   NAME magic_enum

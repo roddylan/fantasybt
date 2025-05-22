@@ -47,11 +47,18 @@ public:
              const std::vector<T> &_pos, const PlayerStatus &_status)
       : name{_name}, rank{_rank}, pos{_pos}, status{_status} {}
   //
-  BasePlayer(const BasePlayer &p) : name{p.name}, rank{p.rank}, pos{p.pos}, status{p.status} {}
+  BasePlayer(const BasePlayer &p)
+      : name{p.name}, rank{p.rank}, pos{p.pos}, status{p.status} {}
+  BasePlayer(BasePlayer &&p)
+      : name{std::move(p.name)}, rank{std::move(p.rank)}, pos{std::move(p.pos)},
+        status{std::move(p.status)} {}
+
   ~BasePlayer(){};
 
   BasePlayer &operator=(const BasePlayer &rhs) {
-    if (&rhs == this) { return *this; }
+    if (&rhs == this) {
+      return *this;
+    }
     name = rhs.name;
     rank = rhs.rank;
     pos = rhs.pos;

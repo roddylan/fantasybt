@@ -76,6 +76,12 @@ private:
   PlayerStatus status;
 };
 
+template<typename T>
+std::ostream &operator<<(std::ostream &os, const BasePlayer<T> &player) {
+  os << player.to_string();
+  return os;
+}
+
 template <typename T> struct TradePackage {
   TradePackage();
   TradePackage(const TradePackage<T> &package)

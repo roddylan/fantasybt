@@ -3,6 +3,7 @@
 #include "player.hpp"
 #include <unordered_map>
 #include <vector>
+#include <memory>
 
 template <typename T> class AvailablePlayers {};
 
@@ -18,7 +19,7 @@ template <typename T> struct Roster {
   //
 
   std::unordered_map<T, size_t> avail_pos;
-  std::vector<BasePlayer<T>> players;
+  std::vector<std::shared_ptr<BasePlayer<T>>> players;
 };
 
 #endif

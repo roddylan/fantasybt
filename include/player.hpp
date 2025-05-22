@@ -63,6 +63,17 @@ public:
     rank = rhs.rank;
     pos = rhs.pos;
     status = rhs.status;
+    return *this;
+  }
+
+  BasePlayer &operator=(BasePlayer &&rhs) {
+    if (&rhs != this) {
+      name = std::move(rhs.name);
+      rank = std::move(rhs.rank);
+      pos = std::move(rhs.pos);
+      status = std::move(rhs.status);
+    }
+    return *this;
   }
   std::vector<T> get_pos() const { return pos; }
 

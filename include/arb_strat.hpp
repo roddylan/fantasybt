@@ -5,10 +5,9 @@
 #include "strategy.hpp"
 #include <functional>
 
-
-class ArbStrategy : public Strategy {
+class FBArbStrategy : public Strategy {
 public:
-  ~ArbStrategy();
+  ~FBArbStrategy();
 
   void draft_strategy(const BasePlayer<T_FOOTBALL> &, const int &) override;
   void roster_strategy() override;

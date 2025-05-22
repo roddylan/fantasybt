@@ -65,8 +65,9 @@ public:
 
   operator std::string() const { return this->to_string(); }
 
+  template <typename U>
   friend std::ostream &operator<<(std::ostream &os,
-                                  const BasePlayer<T> &player);
+                                  const BasePlayer<U> &player);
   //
 
 private:

@@ -17,6 +17,12 @@ const auto empty_roster_strategy = []<typename T>(const T &player,
                                                   const int &pick) {};
 
 // template <typename T>
+
+/**
+ * @class Strategy
+ * @brief Strategy base class
+ * 
+ */
 class Strategy {
 public:
   // constructors
@@ -56,7 +62,9 @@ public:
 
   void run(const bool &is_draft, const size_t &year, const size_t &week, const size_t &day) {
     if (is_draft) {
-      
+      // todo: finish
+
+      return;
     }
   } // run strategy
 

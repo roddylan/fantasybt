@@ -1,20 +1,14 @@
+#include "player.hpp"
 #include <cassert>
 #include <iostream>
-#include "player.hpp"
-
 
 int main() {
   BasePlayer<Position::Football> temp{
-    "CeeDee Lamb",
-    1,
-    std::vector<Position::Football> {Position::Football::WR},
-    PlayerStatus::H
-  };
-  
+      "CeeDee Lamb", 1, std::vector<Position::Football>{Position::Football::WR},
+      PlayerStatus::H};
 
-  std::cout << temp.to_string();
-  // std::cout << temp;
-
+  // std::cout << temp.to_string();
+  std::cout << temp;
 
   return 0;
 }

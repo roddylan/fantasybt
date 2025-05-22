@@ -17,6 +17,9 @@ template <typename T> struct Roster {
       : avail_pos{_avail_pos}, players{_players} {}
   Roster(const std::unordered_map<T, size_t> &_avail_pos, const size_t &_sz)
       : avail_pos{_avail_pos}, players(_sz) {}
+  Roster(Roster &&roster)
+      : avail_pos{std::move(roster.avail_pos)}, players{std::move(
+                                                    roster.players)} {}
   //
 
   Roster &operator=(const Roster &rhs) {
@@ -25,6 +28,12 @@ template <typename T> struct Roster {
     }
     this->avail_pos = rhs.avail_pos;
     this->players = rhs.players;
+    return *this;
+  }
+
+  Roster &operator=(Roster &&rhs) {
+    avail_pos = std::move(rhs.avail_pos);
+    players = std::move(rhs.players);
     return *this;
   }
 

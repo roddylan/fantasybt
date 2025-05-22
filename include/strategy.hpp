@@ -29,6 +29,14 @@ public:
 
   virtual ~Strategy(); // destructor
 
+  Strategy &operator=(const Strategy &rhs) {
+    if (&rhs == this) { return *this; }
+    this->roster = rhs.roster;
+    this->win = rhs.win;
+    this->loss = rhs.loss;
+    return *this;
+  }
+
   virtual void draft_strategy(const BasePlayer<T_FOOTBALL> &, const int &){};
 
   virtual void roster_strategy(){};

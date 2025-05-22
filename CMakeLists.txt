@@ -9,11 +9,13 @@ project(FantasyBT VERSION 0.1
 # 
 include(cmake/CPM.cmake)
 
-add_executable(fbt "src/main.cpp")
 file(GLOB_RECURSE SRC "src/*.cpp" EXCLUDE "src/main.cpp")
 
 file(GLOB_RECURSE TEST_SRC "test/*.cpp")
-add_executable(test ${TEST_SRC})
+
+
+add_executable(fbt src/main.cpp ${SRC})
+add_executable(test ${TEST_SRC} ${SRC})
 
 
 CPMAddPackage(

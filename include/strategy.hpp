@@ -1,5 +1,5 @@
-#ifndef STRATEGY_HPP_
-#define STRATEGY_HPP_
+#ifndef FBT_STRATEGY_HPP_
+#define FBT_STRATEGY_HPP_
 #include "player.hpp"
 #include "roster.hpp"
 #include <algorithm>
@@ -54,8 +54,11 @@ public:
     loss += !_win;
   }
 
-  void run(const bool &draft, const size_t &year, const size_t &week,
-           const size_t &day); // run strategy
+  void run(const bool &is_draft, const size_t &year, const size_t &week, const size_t &day) {
+    if (is_draft) {
+      
+    }
+  } // run strategy
 
 private:
   Roster<T_FOOTBALL> roster;
@@ -63,5 +66,7 @@ private:
   size_t win;
   size_t loss;
 };
+
+
 
 #endif

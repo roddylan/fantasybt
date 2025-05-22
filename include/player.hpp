@@ -1,5 +1,5 @@
-#ifndef PLAYER_HPP_
-#define PLAYER_HPP_
+#ifndef FBT_PLAYER_HPP_
+#define FBT_PLAYER_HPP_
 #include "magic_enum/magic_enum.hpp"
 #include <cstddef>
 #include <fmt/core.h>

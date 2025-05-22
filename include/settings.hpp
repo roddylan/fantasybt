@@ -1,0 +1,1 @@
+#ifndef FBT_SETTINGS_HPP_

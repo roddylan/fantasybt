@@ -1,5 +1,5 @@
-#ifndef ROSTER_HPP_
-#define ROSTER_HPP_
+#ifndef FBT_ROSTER_HPP_
+#define FBT_ROSTER_HPP_
 #include "player.hpp"
 #include <algorithm>
 #include <memory>

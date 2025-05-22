@@ -1,7 +1,7 @@
 // arb_strat.hpp
 // simple strategy
-#ifndef ARB_STRAT_HPP_
-#define ARB_STRAT_HPP_
+#ifndef FBT_ARB_STRAT_HPP_
+#define FBT_ARB_STRAT_HPP_
 #include "strategy.hpp"
 #include <functional>
 

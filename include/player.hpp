@@ -1,32 +1,33 @@
 #ifndef PLAYER_HPP_
 #define PLAYER_HPP_
+#include "magic_enum/magic_enum.hpp"
 #include <cstddef>
+#include <format>
 #include <ostream>
 #include <string>
-#include <vector> 
-#include <format>
+#include <vector>
 
 namespace Position {
-  enum class Football {
-    QB,
-    RB,
-    WR,
-    TE,
-    STD,
-    K,
-    UTIL,
-  };
+enum class Football {
+  QB,
+  RB,
+  WR,
+  TE,
+  STD,
+  K,
+  UTIL,
+};
 
-  enum class Hockey {
-    C,
-    LW,
-    RW,
-    W,
-    F,
-    D,
-    G,
-    UTIL,
-  };
+enum class Hockey {
+  C,
+  LW,
+  RW,
+  W,
+  F,
+  D,
+  G,
+  UTIL,
+};
 } // namespace Position
 
 enum class PlayerStatus {
@@ -43,25 +44,29 @@ public:
   BasePlayer(const std::string &_name, const float &_rank,
              const std::vector<T> &_pos, const PlayerStatus &_status)
       : name{_name}, rank{_rank}, pos{_pos}, status{_status} {}
-
+  //
   ~BasePlayer();
 
   std::vector<T> get_pos() const { return pos; }
 
   PlayerStatus get_status() const { return status; }
   void set_status(const PlayerStatus &_status) { status = _status; }
-  
+
   std::string to_string() const {
-    // return std::format("{} | {} | Cur Rank: {} | Status: {}", );
-    return "";
+    // name | position | rank | status
+    std::string positions{};
+    for (const auto &p : pos) {
+      positions += magic_enum::enum_name(p) + " ";
+    }
+    return std::format("{} | {}| Cur Rank: {:.2f} | Status: {}", name,
+                       positions, rank, magic_enum::enum_name(status));
   }
 
-  operator std::string() const {
-    return this->to_string();
-  }
+  operator std::string() const { return this->to_string(); }
 
-  friend std::ostream &operator<<(std::ostream &os, const BasePlayer<T> &player);
-
+  friend std::ostream &operator<<(std::ostream &os,
+                                  const BasePlayer<T> &player);
+  //
 
 private:
   std::string name;
@@ -70,12 +75,10 @@ private:
   PlayerStatus status;
 };
 
-
-
-template<typename T>
-struct TradePackage {
+template <typename T> struct TradePackage {
   TradePackage();
-  TradePackage(const TradePackage<T> &package) : players{package.players}, picks{package.picks} {};
+  TradePackage(const TradePackage<T> &package)
+      : players{package.players}, picks{package.picks} {};
   ~TradePackage();
 
   std::vector<BasePlayer<T>> players; // players in trade package
@@ -83,8 +86,7 @@ struct TradePackage {
   // TODO: waiver dollars
 };
 
-template<typename T>
-struct Trade {
+template <typename T> struct Trade {
   Trade() = delete;
   Trade(TradePackage<T> _p1, TradePackage<T> _p2) : pack1{_p1}, pack2{_p2} {};
   ~Trade();
@@ -92,6 +94,5 @@ struct Trade {
   TradePackage<T> pack1;
   TradePackage<T> pack2;
 };
-
 
 #endif

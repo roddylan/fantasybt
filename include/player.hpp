@@ -2,7 +2,7 @@
 #define PLAYER_HPP_
 #include "magic_enum/magic_enum.hpp"
 #include <cstddef>
-#include <format>
+#include <fmt/core.h>
 #include <ostream>
 #include <string>
 #include <vector>
@@ -45,7 +45,7 @@ public:
              const std::vector<T> &_pos, const PlayerStatus &_status)
       : name{_name}, rank{_rank}, pos{_pos}, status{_status} {}
   //
-  ~BasePlayer();
+  ~BasePlayer() {};
 
   std::vector<T> get_pos() const { return pos; }
 
@@ -56,9 +56,10 @@ public:
     // name | position | rank | status
     std::string positions{};
     for (const auto &p : pos) {
-      positions += magic_enum::enum_name(p) + " ";
+      positions += std::string(magic_enum::enum_name(p)) + " ";
     }
-    return std::format("{} | {}| Cur Rank: {:.2f} | Status: {}", name,
+    
+    return fmt::format("{} | {}| Cur Rank: {:.2f} | Status: {}", name,
                        positions, rank, magic_enum::enum_name(status));
   }
 

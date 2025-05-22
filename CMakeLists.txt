@@ -9,12 +9,13 @@ project(FantasyBT VERSION 0.1
 # 
 include(cmake/CPM.cmake)
 
-file(GLOB_RECURSE SRC "src/*.cpp" EXCLUDE "src/main.cpp")
+file(GLOB_RECURSE SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
+list(REMOVE_ITEM SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp")
 
 file(GLOB_RECURSE TEST_SRC "test/*.cpp")
 
 
-add_executable(fbt src/main.cpp ${SRC})
+add_executable(fbt ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp ${SRC})
 add_executable(test ${TEST_SRC} ${SRC})
 
 
@@ -27,8 +28,8 @@ CPMAddPackage(
 find_package(fmt CONFIG REQUIRED)
 
 
-target_include_directories(fbt PRIVATE include)
-target_include_directories(test PRIVATE include)
+target_include_directories(fbt PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include")
+target_include_directories(test PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 target_link_libraries(fbt PRIVATE fmt::fmt magic_enum)
 target_link_libraries(test PRIVATE fmt::fmt magic_enum)

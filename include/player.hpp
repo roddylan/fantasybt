@@ -51,7 +51,7 @@ public:
   ~BasePlayer(){};
 
   BasePlayer &operator=(const BasePlayer &rhs) {
-    if (*rhs == this) { return *this; }
+    if (&rhs == this) { return *this; }
     name = rhs.name;
     rank = rhs.rank;
     pos = rhs.pos;

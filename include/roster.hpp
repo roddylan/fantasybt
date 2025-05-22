@@ -12,11 +12,14 @@ template <typename T> struct Roster {
   Roster() = delete;
   Roster(const Roster &roster)
       : avail_pos(roster.avail_pos), players(roster.players) {}
+  //
   Roster(const std::unordered_map<T, size_t> &_avail_pos,
-         const std::vector<T> &_players)
+         const std::vector<std::shared_ptr<BasePlayer<T>>> &_players)
       : avail_pos{_avail_pos}, players{_players} {}
+  //
   Roster(const std::unordered_map<T, size_t> &_avail_pos, const size_t &_sz)
       : avail_pos{_avail_pos}, players(_sz) {}
+  //
   Roster(Roster &&roster)
       : avail_pos{std::move(roster.avail_pos)}, players{std::move(
                                                     roster.players)} {}
@@ -32,8 +35,10 @@ template <typename T> struct Roster {
   }
 
   Roster &operator=(Roster &&rhs) {
-    avail_pos = std::move(rhs.avail_pos);
-    players = std::move(rhs.players);
+    if (this != &rhs) {
+      avail_pos = std::move(rhs.avail_pos);
+      players = std::move(rhs.players);
+    }
     return *this;
   }
 

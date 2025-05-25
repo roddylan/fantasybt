@@ -53,7 +53,7 @@ public:
       : name{std::move(p.name)}, rank{std::move(p.rank)}, pos{std::move(p.pos)},
         status{std::move(p.status)} {}
 
-  ~BasePlayer(){};
+  ~BasePlayer() = default;
 
   BasePlayer &operator=(const BasePlayer &rhs) {
     if (&rhs == this) {

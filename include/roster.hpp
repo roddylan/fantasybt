@@ -6,7 +6,6 @@
 #include <unordered_map>
 #include <vector>
 
-template <typename T> class AvailablePlayers {};
 
 template <typename T> struct Roster {
   Roster() = delete;

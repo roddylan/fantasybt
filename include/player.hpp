@@ -7,6 +7,8 @@
 #include <string>
 #include <vector>
 
+using PID = long;
+
 namespace Position {
   enum class Football {
     QB,
@@ -103,6 +105,7 @@ private:
   float rank;
   std::vector<T> pos;
   PlayerStatus status;
+  PID player_id;
 };
 
 template <typename T>

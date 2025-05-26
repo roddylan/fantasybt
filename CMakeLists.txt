@@ -11,7 +11,7 @@ include(cmake/CPM.cmake)
 
 file(GLOB_RECURSE SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 list(REMOVE_ITEM SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp")
-
+add_subdirectory(lib/libpqxx build-pqxx)
 file(GLOB_RECURSE TEST_SRC "test/*.cpp")
 
 
@@ -31,8 +31,8 @@ find_package(fmt CONFIG REQUIRED)
 target_include_directories(fbt PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include")
 target_include_directories(test PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
-target_link_libraries(fbt PRIVATE fmt::fmt magic_enum)
-target_link_libraries(test PRIVATE fmt::fmt magic_enum)
+target_link_libraries(fbt PRIVATE fmt::fmt magic_enum pqxx)
+target_link_libraries(test PRIVATE fmt::fmt magic_enum pqxx)
 
 
 # include_directories(include)

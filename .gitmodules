@@ -1,3 +1,0 @@
-[submodule "lib/libpqxx"]
-	path = lib/libpqxx
-	url = https://github.com/jtv/libpqxx.git

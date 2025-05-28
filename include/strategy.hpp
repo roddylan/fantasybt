@@ -69,10 +69,10 @@ public:
   } // run strategy
 
 private:
-  Roster<T_FOOTBALL> roster;
-
   size_t win;
   size_t loss;
+  
+  Roster<T_FOOTBALL> roster;
 };
 
 

@@ -5,7 +5,6 @@
 #include <memory>
 #include <unordered_map>
 #include <vector>
-#include <pqxx/pqxx>
 
 template <typename T> struct Roster {
   Roster() = delete;

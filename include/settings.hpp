@@ -24,6 +24,10 @@ template <typename SPORT> struct DraftSettings {
       : pos_limit{draft_settings.pos_limit}, n_teams{draft_settings.n_teams},
         draft_type{draft_settings.draft_type}, is_snake{draft_settings.is_snake} {}
   //
+  DraftSettings(DraftSettings<SPORT> &&draft_settings)
+      : pos_limit{draft_settings.pos_limit}, n_teams{draft_settings.n_teams},
+        draft_type{draft_settings.draft_type}, is_snake{draft_settings.is_snake} {}
+  //
   ~DraftSettings() = default;
 
   DraftSettings<SPORT> &operator=(const DraftSettings<SPORT> &rhs) noexcept {
@@ -47,8 +51,6 @@ template <typename SPORT> struct DraftSettings {
     this->is_snake = rhs.is_snake;
     return *this;
   }
-
-
 
   POS_LIMIT<SPORT> pos_limit;
   const size_t n_teams;

@@ -2,6 +2,7 @@
 #define FBT_STRATEGY_HPP_
 #include "player.hpp"
 #include "roster.hpp"
+#include "settings.hpp"
 #include <algorithm>
 #include <functional>
 #include <unordered_map>
@@ -53,7 +54,9 @@ public:
   void send_trade();
   void receive_trade();
 
-  void draft();
+  void draft(DraftSettings<T_FOOTBALL> *draft_settings) {
+    
+  }
 
   void update_performance(const bool &_win) {
     win += _win;

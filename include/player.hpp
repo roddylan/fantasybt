@@ -57,7 +57,7 @@ public:
 
   ~BasePlayer() = default;
 
-  BasePlayer &operator=(const BasePlayer &rhs) {
+  BasePlayer &operator=(const BasePlayer &rhs) noexcept {
     if (&rhs == this) {
       return *this;
     }
@@ -68,7 +68,7 @@ public:
     return *this;
   }
 
-  BasePlayer &operator=(BasePlayer &&rhs) {
+  BasePlayer &operator=(BasePlayer &&rhs) noexcept {
     if (&rhs != this) {
       name = std::move(rhs.name);
       rank = std::move(rhs.rank);
@@ -77,12 +77,12 @@ public:
     }
     return *this;
   }
-  std::vector<T> get_pos() const { return pos; }
+  std::vector<T> get_pos() const noexcept { return pos; }
 
-  PlayerStatus get_status() const { return status; }
+  PlayerStatus get_status() const noexcept { return status; }
   void set_status(const PlayerStatus &_status) { status = _status; }
 
-  std::string to_string() const {
+  std::string to_string() const noexcept {
     // name | position | rank | status
     std::string positions{};
     for (const auto &p : pos) {

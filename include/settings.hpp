@@ -59,11 +59,10 @@ template <typename SPORT> struct DraftSettings {
 };
 
 template <typename SPORT> struct LeagueSettings {
-  size_t n_teams;
-
-  POS_LIMIT<SPORT> pos_limit;
-  std::unique_ptr<DraftSettings<SPORT>> settings;
   const bool is_keeper;
+  size_t n_teams;
+  std::unique_ptr<DraftSettings<SPORT>> settings;
+  POS_LIMIT<SPORT> pos_limit;
 };
 
 #endif

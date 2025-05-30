@@ -23,7 +23,7 @@ template <typename T> struct Roster {
                                                     roster.players)} {}
   //
 
-  Roster &operator=(const Roster &rhs) {
+  Roster &operator=(const Roster &rhs) noexcept {
     if (&rhs == this) {
       return *this;
     }
@@ -32,7 +32,7 @@ template <typename T> struct Roster {
     return *this;
   }
 
-  Roster &operator=(Roster &&rhs) {
+  Roster &operator=(Roster &&rhs) noexcept {
     if (this != &rhs) {
       avail_pos = std::move(rhs.avail_pos);
       players = std::move(rhs.players);

@@ -66,8 +66,7 @@ template <typename SPORT> struct LeagueSettings {
                  const DraftSettings<SPORT> &_draft,
                  const POS_LIMIT<SPORT> &_pos_limit)
       : is_keeper(_is_keeper), n_teams(_n_teams), pos_limit(_pos_limit),
-        draft(std::make_shared<DraftSettings<SPORT>>(
-            DraftSettings<SPORT>(_draft))) {}
+        draft(std::make_shared<DraftSettings<SPORT>>(_draft)) {}
   // copy construct
   LeagueSettings(const LeagueSettings<SPORT> &other)
       : is_keeper(other.is_keeper), n_teams(other.n_teams),
@@ -77,7 +76,8 @@ template <typename SPORT> struct LeagueSettings {
       : is_keeper(other.is_keeper), n_teams(other.n_teams),
         pos_limit(std::move(other.pos_limit)), draft(std::move(other.draft)) {}
   //
-  LeagueSettings<SPORT> &operator=(const LeagueSettings<SPORT> &other) noexcept {
+  LeagueSettings<SPORT> &
+  operator=(const LeagueSettings<SPORT> &other) noexcept {
     if (&other == this) {
       return *this;
     }
@@ -96,6 +96,7 @@ template <typename SPORT> struct LeagueSettings {
     this->is_keeper = other.is_keeper;
     this->n_teams = other.n_teams;
     this->pos_limit = std::move(other.pos_limit);
+    return *this;
   }
   //
   ~LeagueSettings() = default; // default destruct

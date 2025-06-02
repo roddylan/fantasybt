@@ -33,6 +33,13 @@ public:
     return *this;
   }
 
+  bool operator<(TeamState<SPORT> &other) {
+    return this->total_pts < other.total_pts;
+  }
+  bool operator>(TeamState<SPORT> &other) {
+    return this->total_pts > other.total_pts;
+  }
+
 private:
   std::vector<std::shared_ptr<BasePlayer<SPORT>>> roster;
   size_t total_pts;

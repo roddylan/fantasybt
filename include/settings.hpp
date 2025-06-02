@@ -22,11 +22,13 @@ template <typename SPORT> struct DraftSettings {
   //
   DraftSettings(const DraftSettings<SPORT> &draft_settings)
       : pos_limit{draft_settings.pos_limit}, n_teams{draft_settings.n_teams},
-        draft_type{draft_settings.draft_type}, is_snake{draft_settings.is_snake} {}
+        draft_type{draft_settings.draft_type}, is_snake{
+                                                   draft_settings.is_snake} {}
   //
   DraftSettings(DraftSettings<SPORT> &&draft_settings)
       : pos_limit{draft_settings.pos_limit}, n_teams{draft_settings.n_teams},
-        draft_type{draft_settings.draft_type}, is_snake{draft_settings.is_snake} {}
+        draft_type{draft_settings.draft_type}, is_snake{
+                                                   draft_settings.is_snake} {}
   //
   ~DraftSettings() = default;
 
@@ -59,9 +61,48 @@ template <typename SPORT> struct DraftSettings {
 };
 
 template <typename SPORT> struct LeagueSettings {
-  const bool is_keeper;
+  LeagueSettings() = delete;
+  LeagueSettings(const bool &_is_keeper, const size_t &_n_teams,
+                 const DraftSettings<SPORT> &_draft,
+                 const POS_LIMIT<SPORT> &_pos_limit)
+      : is_keeper(_is_keeper), n_teams(_n_teams), pos_limit(_pos_limit),
+        draft(std::make_shared<DraftSettings<SPORT>>(
+            DraftSettings<SPORT>(_draft))) {}
+  // copy construct
+  LeagueSettings(const LeagueSettings<SPORT> &other)
+      : is_keeper(other.is_keeper), n_teams(other.n_teams),
+        pos_limit(other.pos_limit), draft(other.draft) {}
+  // move construct
+  LeagueSettings(LeagueSettings<SPORT> &&other)
+      : is_keeper(other.is_keeper), n_teams(other.n_teams),
+        pos_limit(std::move(other.pos_limit)), draft(std::move(other.draft)) {}
+  //
+  LeagueSettings<SPORT> &operator=(const LeagueSettings<SPORT> &other) noexcept {
+    if (&other == this) {
+      return *this;
+    }
+    this->draft = std::make_shared<DraftSettings<SPORT>>(*other.draft);
+    this->is_keeper = other.is_keeper;
+    this->n_teams = other.n_teams;
+    this->pos_limit = other.pos_limit;
+    return *this;
+  }
+  //
+  LeagueSettings<SPORT> &operator=(LeagueSettings<SPORT> &&other) noexcept {
+    if (&other == this) {
+      return *this;
+    }
+    this->draft = std::move(other.draft);
+    this->is_keeper = other.is_keeper;
+    this->n_teams = other.n_teams;
+    this->pos_limit = std::move(other.pos_limit);
+  }
+  //
+  ~LeagueSettings() = default; // default destruct
+
+  bool is_keeper;
   size_t n_teams;
-  std::unique_ptr<DraftSettings<SPORT>> settings;
+  std::shared_ptr<DraftSettings<SPORT>> draft;
   POS_LIMIT<SPORT> pos_limit;
 };
 

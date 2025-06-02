@@ -36,8 +36,13 @@ public:
   bool operator<(TeamState<SPORT> &other) {
     return this->total_pts < other.total_pts;
   }
+  
   bool operator>(TeamState<SPORT> &other) {
     return this->total_pts > other.total_pts;
+  }
+  
+  bool operator==(TeamState<SPORT> &other) {
+    return this->total_pts == other.total_pts;
   }
 
 private:

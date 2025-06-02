@@ -61,7 +61,15 @@ template <typename SPORT> struct DraftSettings {
 };
 
 template <typename SPORT> struct LeagueSettings {
+  // default construct
   LeagueSettings() = delete;
+  // value construct
+  LeagueSettings(const bool &_is_keeper, const size_t &_n_teams,
+                 const std::shared_ptr<DraftSettings<SPORT>> &_draft,
+                 const POS_LIMIT<SPORT> &_pos_limit)
+      : is_keeper(_is_keeper), n_teams(_n_teams), pos_limit(_pos_limit),
+        draft(_draft) {}
+  // value construct
   LeagueSettings(const bool &_is_keeper, const size_t &_n_teams,
                  const DraftSettings<SPORT> &_draft,
                  const POS_LIMIT<SPORT> &_pos_limit)
@@ -81,7 +89,7 @@ template <typename SPORT> struct LeagueSettings {
     if (&other == this) {
       return *this;
     }
-    this->draft = std::make_shared<DraftSettings<SPORT>>(*other.draft);
+    this->draft = other.draft;
     this->is_keeper = other.is_keeper;
     this->n_teams = other.n_teams;
     this->pos_limit = other.pos_limit;

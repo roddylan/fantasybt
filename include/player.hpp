@@ -7,29 +7,29 @@
 #include <string>
 #include <vector>
 
-using PID = long;
+using PID = std::string;
 
 namespace Position {
-  enum class Football {
-    QB,
-    RB,
-    WR,
-    TE,
-    STD,
-    K,
-    UTIL,
-  };
+enum class Football {
+  QB,
+  RB,
+  WR,
+  TE,
+  STD,
+  K,
+  UTIL,
+};
 
-  enum class Hockey {
-    C,
-    LW,
-    RW,
-    W,
-    F,
-    D,
-    G,
-    UTIL,
-  };
+enum class Hockey {
+  C,
+  LW,
+  RW,
+  W,
+  F,
+  D,
+  G,
+  UTIL,
+};
 } // namespace Position
 
 enum class PlayerStatus {
@@ -44,16 +44,19 @@ enum class PlayerStatus {
 template <typename T> class BasePlayer {
 public:
   // TODO: add projected rank
-  BasePlayer() : name{"None"}, rank{-1}, pos{}, status{PlayerStatus::DNE} {}
+  BasePlayer()
+      : name{"None"}, rank{-1}, pos{}, status{PlayerStatus::DNE}, player_id{} {}
   BasePlayer(const std::string &_name, const float &_rank,
-             const std::vector<T> &_pos, const PlayerStatus &_status)
-      : name{_name}, rank{_rank}, pos{_pos}, status{_status} {}
+             const std::vector<T> &_pos, const PlayerStatus &_status,
+             const PID &_pid)
+      : name{_name}, rank{_rank}, pos{_pos}, status{_status}, player_id{_pid} {}
   //
   BasePlayer(const BasePlayer &p)
-      : name{p.name}, rank{p.rank}, pos{p.pos}, status{p.status} {}
+      : name{p.name}, rank{p.rank}, pos{p.pos}, status{p.status},
+        player_id{p.player_id} {}
   BasePlayer(BasePlayer &&p)
       : name{std::move(p.name)}, rank{std::move(p.rank)}, pos{std::move(p.pos)},
-        status{std::move(p.status)} {}
+        status{std::move(p.status)}, player_id{std::move(p.player_id)} {}
 
   ~BasePlayer() = default;
 

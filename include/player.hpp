@@ -68,6 +68,7 @@ public:
     rank = rhs.rank;
     pos = rhs.pos;
     status = rhs.status;
+    player_id = rhs.player_id;
     return *this;
   }
 
@@ -77,6 +78,7 @@ public:
       rank = std::move(rhs.rank);
       pos = std::move(rhs.pos);
       status = std::move(rhs.status);
+      player_id = std::move(rhs.player_id);
     }
     return *this;
   }
